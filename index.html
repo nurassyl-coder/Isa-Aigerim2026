@@ -11,7 +11,7 @@
   <meta property="og:title" content="Иса&Айгерім" />
   <meta property="og:description" content="Үйлену тойға шақыру" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="share_image.jpg" />
+  <meta property="og:image" content="https://nurassyl-coder.github.io/Isa-Aigerim/ИсаАйгерім.jpg" />
   <meta property="og:image:width" content="796" />
   <meta property="og:image:height" content="1024" />
   <link rel="canonical" href="http://priglasi.com.kz/isaaigerim"> <!--/metatextblock-->
@@ -3974,7 +3974,7 @@
             data-field-receivers-value="9b4868bb8577a0c836168559cd22eb28,5e30f4158e91ab1b0b81d2386f5ef861,4b588c009401ab9d46983039e086224e,1f0b8fa6a91f64d4157959d7999d38e2">
             <div class='tn-atom tn-atom__form'></div> <!--googleoff: all--> <!--noindex-->
             <div data-nosnippet="true" class="tn-atom__inputs-wrapp" style="display:none;"> <textarea
-                class="tn-atom__inputs-textarea">[{"lid":"1686556133498","ls":"10","loff":"","li_parent_id":"","li_type":"rd","li_variants":"Иә келемін\nЖоқ, келе алмаймын\nЖұбыммен келемін","li_radcb":"rb","li_nm":"Radio"},{"lid":"1686556133497","ls":"20","loff":"","li_parent_id":"","li_type":"nm","li_title":"Аты-жөніңізді жазыңыз (жұбайыңызбен келетін болсаңыз, есімдеріңізді бірге жазуды өтінеміз):","li_ph":"","li_req":"y","li_nm":"Name"}]</textarea>
+                class="tn-atom__inputs-textarea">[{"lid":"1686556133498","ls":"10","loff":"","li_parent_id":"","li_type":"rd","li_variants":"Иә келемін\nЖоқ, келе алмаймын\nЖұбыммен келемін","li_radcb":"rb","li_req":"y","li_nm":"Radio"},{"lid":"1686556133497","ls":"20","loff":"","li_parent_id":"","li_type":"nm","li_title":"Аты-жөніңізді жазыңыз (жұбайыңызбен келетін болсаңыз, есімдеріңізді бірге жазуды өтінеміз):","li_ph":"","li_req":"y","li_nm":"Name"}]</textarea>
             </div>
             <!-- Form export deps: https://static.tildacdn.pro/css/tilda-zero-form-errorbox.min.css https://static.tildacdn.pro/css/tilda-zero-form-horizontal.min.css https://static.tildacdn.pro/js/tilda-phone-mask-1.1.min.js https://static.tildacdn.pro/css/tilda-date-picker-1.0.min.css https://static.tildacdn.pro/js/tilda-date-picker-1.0.min.js https://static.tildacdn.pro/js/tilda-calc-1.0.min.js https://static.tildacdn.pro/js/tilda-upwidget-1.1.min.js https://static.tildacdn.pro/js/uploadcare-3.x.full.min.js https://static.tildacdn.pro/js/uploadcare-3.x.min.js https://static.tildacdn.pro/js/tilda-range-1.0.min.js https://static.tildacdn.pro/css/tilda-range-1.0.min.css https://static.tildacdn.pro/js/tilda-img-select-1.0.min.js https://static.tildacdn.pro/css/tilda-img-select-1.0.min.css -->
             <!--/noindex--> <!--googleon: all-->
@@ -4068,6 +4068,25 @@
             if (radioInput) params.append('Radio', radioInput.value);
           }
 
+          // Validation: Check if required fields are filled
+          const nameValue = params.get('Name');
+          const radioValue = params.get('Radio');
+
+          if (!nameValue || !nameValue.trim()) {
+            alert('Аты-жөніңізді жазыңыз!'); // Please write your name!
+            newBtn.innerText = originalText;
+            newBtn.style.opacity = "1";
+            newBtn.style.pointerEvents = "auto";
+            return;
+          }
+
+          if (!radioValue) {
+            alert('Келетін/келмейтініңізді белгілеңіз!'); // Please select if you are coming!
+            newBtn.innerText = originalText;
+            newBtn.style.opacity = "1";
+            newBtn.style.pointerEvents = "auto";
+            return;
+          }
           fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             body: params, // Send as x-www-form-urlencoded
